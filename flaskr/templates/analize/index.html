@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Files in the database{% endblock %}</h1>
+<!--{% if g.user %}
+    <a class="action" href="{{ url_for('analize.compare') }}">RUN</a>
+  {% endif %}-->
+  
+
+
+{% endblock %}
+
+{% block body %}
+
+
+{% endblock %}
+
+
+ {% block content %}
+<table id="data_table" border="1">
+	<tr>
+		<th> Non-discriminative barcode </th>
+		<th> Reference </th>
+        <th> Odd reference</th>
+		<th> Discriminative</th>
+    </tr>
+{% for item in items %}
+	<tr onclick="toggleClass(this,'selected');">
+		<td> {{ item[1] }} </td>
+		<td> {{ item[2] }} </td>
+        <td> {{ item[8] }}</td>
+		<td>  No </tr>
+    
+    {% if not loop.last %}
+    {% endif %}
+  {% endfor %}
+  
+   </table>
+
+	   {% if g.user %}
+
+<form method ="POST", name="myform">
+	<input type="hidden" name="myinput" value="0" />
+	<input type="hidden" name="myinput2" value="0" />
+	<input type="hidden" name="myinput3" value="0" />
+	<input type="hidden" name="generate" value="0" />
+	<input type="submit" value="Analize" onclick="getclass(data_table)">
+	</form>
+   <!-- <a class="action" href="{{ url_for('analize.compare') }}">RUN</a>-->
+  {% endif %}
+
+{% endblock %}
+

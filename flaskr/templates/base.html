@@ -1,0 +1,44 @@
+<!doctype html>
+<head>
+<title>{% block title %}{% endblock %} - Discriminatory barcode analysis tool</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='map.js') }}"></script>
+
+</head>
+
+<nav>
+  <h1>NDBAT: Non-Discriminatory barcode analysis tool</h1>
+  <ul>
+    {% if g.user %}
+      <li><span>{{ g.user['username'] }}</span>
+      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+      <li><a href="{{ url_for('index') }}">Index</a>
+    {% else %}
+    <li><a href="{{ url_for('auth.register') }}">Register</a>
+    <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    {% endif %}
+  </ul>
+</nav>
+
+<div class="explanation">
+	<div id="exp"> 
+	<p> This is a simple tool to explore discriminatory  possibilities and limitations for optical DNA maps</p>
+	</div>
+</div>
+
+<body>
+<script>
+getData2()
+</script>
+
+
+{% block body %}{% endblock %}
+
+</body>
+
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% block content %}{% endblock %}
+</section>
